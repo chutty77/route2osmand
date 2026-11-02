@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Route→GPX">
 <meta name="theme-color" content="#0b3d91"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png">
 <title>Flight Route → GPX</title>
@@ -37,7 +37,7 @@ input:focus::placeholder,textarea:focus::placeholder{color:transparent;opacity:0
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="route.js"></script>
 <script>
-const $=id=>document.getElementById(id);let LASTC=null,ND=null,GPX=null,FNAME='route.gpx';
+const APP_VERSION='2.1.3';const $=id=>document.getElementById(id);let LASTC=null,ND=null,GPX=null,FNAME='route.gpx';
 const EX={o:'YMML',d:'YSSY',r:'DCT DOSEL Y59 RIVET DCT',f:'QFA444'};
 const map=L.map('map',{worldCopyJump:true}).setView([20,60],2);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);
@@ -48,7 +48,7 @@ $('ex').onclick=()=>{$('orig').value=EX.o;$('dest').value=EX.d;$('route').value=
 async function load(){try{
  ND=window.NAVDATA||await (await fetch('navdata.json')).json();
  $('status').className='iss ok';$('status').textContent=`Nav data ready: ${Object.keys(ND.p).length.toLocaleString()} fixes/navaids, ${Object.keys(ND.a).length.toLocaleString()} airways, ${Object.keys(ND.ap).length.toLocaleString()} airports.`;
- $('src').textContent='App version 2.1.2 · Not for real-world navigation.';$('go').disabled=false;
+ $('src').textContent='App version '+APP_VERSION+' · Not for real-world navigation.';$('go').disabled=false;
  if($('route').value)run();}catch(e){$('status').className='iss err';$('status').textContent='Failed to load nav data: '+e;}}
 function lonFix(pts){let o=0,out=[],prev=null;for(const p of pts){let lo=p[1]+o;if(prev!==null){while(lo-prev>180){o-=360;lo-=360}while(lo-prev<-180){o+=360;lo+=360}}out.push([p[0],lo]);prev=lo;}return out;}
 function run(){
@@ -68,6 +68,14 @@ $('go').onclick=run;
 $('clr').onclick=()=>{['orig','dest','route','flt'].forEach(k=>{$(k).value='';localStorage.removeItem('r2o_'+k);});$('flt').oninput();layer.clearLayers();$('tb').innerHTML='';$('issues').innerHTML='';$('sum').textContent='';GPX=null;FNAME='route.gpx';['dl'].forEach(b=>$(b).disabled=true);map.setView([20,60],2);$('route').focus();};
 function download(){const b=new Blob([GPX],{type:'application/gpx+xml'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=FNAME;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},2000);}
 $('dl').onclick=download;
-if('serviceWorker'in navigator&&location.protocol.startsWith('http')&&!window.NAVDATA){navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{});let rl=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!rl){rl=true;location.reload();}});}
+if('serviceWorker'in navigator&&location.protocol.startsWith('http')&&!window.NAVDATA){navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{});}
+// Version check: if the server has a newer version, clear old caches and reload once.
+async function checkVersion(){try{if(!location.protocol.startsWith('http'))return;
+ const r=await fetch('version.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)return;const v=(await r.json()).version;
+ if(v&&v!==APP_VERSION&&sessionStorage.getItem('r2o_upd')!==v){sessionStorage.setItem('r2o_upd',v);
+  if(window.caches){for(const k of await caches.keys())await caches.delete(k);}
+  if(navigator.serviceWorker){for(const g of await navigator.serviceWorker.getRegistrations())await g.unregister();}
+  location.replace(location.pathname+'?v='+encodeURIComponent(v)+location.hash);}}catch(e){}}
+checkVersion();document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')checkVersion();});
 load().then(()=>{if(location.hash==='#example')$('ex').onclick();});
 </script></body></html>
