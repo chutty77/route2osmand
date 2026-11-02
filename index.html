@@ -19,11 +19,11 @@ button.alt,.btn.alt{background:#e6e9f0;color:#0b3d91}button.go{background:#e6007
 <header><h1>✈︎ Flight Route → OsmAnd GPX</h1></header>
 <main><section>
 <div class="card"><label>1 · Find the route on FlightAware</label>
-<div class="row"><input id="flt" placeholder="Flight no. e.g. QFA10" autocapitalize="characters"><a id="falink" class="btn alt" target="_blank" href="https://www.flightaware.com/live/">Open FlightAware</a></div>
+<div class="row"><input id="flt" placeholder="Flight no. e.g. QFAX" autocapitalize="characters"><a id="falink" class="btn alt" target="_blank" href="https://www.flightaware.com/live/">Open FlightAware</a></div>
 <small>Open the flight page, tap “Track log &amp; graph” / flight details, copy the <b>Route</b> text, and paste below. (FlightAware blocks direct lookups from web apps.)</small></div>
 <div class="card" style="margin-top:14px"><label>2 · Route</label>
-<div class="row"><div><label>Origin ICAO</label><input id="orig" placeholder="EGLL" autocapitalize="characters"></div><div><label>Destination ICAO</label><input id="dest" placeholder="YPPH" autocapitalize="characters"></div></div>
-<label>Route string</label><textarea id="route" autocapitalize="characters" spellcheck="false" placeholder="N0502F330 DET L6 DVR L9 KONAN DCT ..."></textarea>
+<div class="row"><div><label>Origin ICAO</label><input id="orig" placeholder="YSSY" autocapitalize="characters"></div><div><label>Destination ICAO</label><input id="dest" placeholder="YMML" autocapitalize="characters"></div></div>
+<label>Route string</label><textarea id="route" autocapitalize="characters" spellcheck="false" placeholder="DCT DOSEL Y59 RIVET DCT"></textarea>
 <div class="row"><div><label>Curve long legs every (km, 0 = off)</label><input id="step" type="number" value="50" inputmode="numeric"></div></div>
 <div class="row"><button id="go" class="go" disabled>Plot route</button><button id="ex" class="alt">Example</button><button id="clr" class="alt">Clear</button></div>
 <div class="row"><button id="share" disabled>Share GPX → OsmAnd</button><button id="opn" disabled>Open GPX in Safari</button></div>
@@ -39,17 +39,17 @@ button.alt,.btn.alt{background:#e6e9f0;color:#0b3d91}button.go{background:#e6007
 <script src="route.js"></script>
 <script>
 const $=id=>document.getElementById(id);let LASTC=null,ND=null,GPX=null,FNAME='route.gpx';
-const EX={o:'EGLL',d:'YPPH',r:'N0502F330 DET L6 DVR L9 KONAN DCT KOK DCT REMBA DCT MATUG DCT GUBAX DCT BOREP DCT ENITA/N0488F350 DCT TOVKA DCT ERGOM DCT BUDOP DCT DINRO DCT UDROS UM859 KARDE UL851 TBN UM11 REBLO P130 NATSO/K0892F350 P130 MAMED B449 MARAD/N0485F350 B449 RANAH L750 GODSI/M084F350 L750 ZB G202 HILAL/N0494F350 G202 RK P628 NIKOT/M084F350 P628 IBANI Q23 VEXIR/M084F370 Q23 RUPKU/M084F380 Q23 MMV A465 BEBOK/N0491F380 A465 ANSUL/N0486F390 DCT 0501N08137E 0008S08444E/M084F390 DCT ALVES DCT 0329S08700E 0802S09007E 0914S09101E 1312S09422E 1548S09656E/M084F410 1932S10108E 2158S10352E 2611S10826E 2849S11103E DCT OPEGA T12 IPMOR DCT'};
+const EX={o:'YSSY',d:'YMML',r:'DCT DOSEL Y59 RIVET DCT',f:'QFAX'};
 const map=L.map('map',{worldCopyJump:true}).setView([20,60],2);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);
 let layer=L.layerGroup().addTo(map);
 ['orig','dest','route','step','flt'].forEach(k=>{const v=localStorage.getItem('r2o_'+k);if(v)$(k).value=v;});
 $('flt').oninput=()=>{const f=$('flt').value.trim().toUpperCase().replace(/\s/g,'');$('falink').href=f?'https://www.flightaware.com/live/flight/'+encodeURIComponent(f):'https://www.flightaware.com/live/';};$('flt').oninput();
-$('ex').onclick=()=>{$('orig').value=EX.o;$('dest').value=EX.d;$('route').value=EX.r;run();};
+$('ex').onclick=()=>{$('orig').value=EX.o;$('dest').value=EX.d;$('route').value=EX.r;$('flt').value=EX.f;$('flt').oninput();run();};
 async function load(){try{
  ND=window.NAVDATA||await (await fetch('navdata.json')).json();
  $('status').className='iss ok';$('status').textContent=`Nav data ready: ${Object.keys(ND.p).length.toLocaleString()} fixes/navaids, ${Object.keys(ND.a).length.toLocaleString()} airways, ${Object.keys(ND.ap).length.toLocaleString()} airports.`;
- $('src').textContent='App version 4. Data: '+ND.meta.source+'. Built '+ND.meta.built+'. Not for real-world navigation.';$('go').disabled=false;
+ $('src').textContent='App version 5. Data: '+ND.meta.source+'. Built '+ND.meta.built+'. Not for real-world navigation.';$('go').disabled=false;
  if($('route').value)run();}catch(e){$('status').className='iss err';$('status').textContent='Failed to load nav data: '+e;}}
 function lonFix(pts){let o=0,out=[],prev=null;for(const p of pts){let lo=p[1]+o;if(prev!==null){while(lo-prev>180){o-=360;lo-=360}while(lo-prev<-180){o+=360;lo+=360}}out.push([p[0],lo]);prev=lo;}return out;}
 function run(){
