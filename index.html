@@ -31,7 +31,7 @@ button.alt,.btn.alt{background:#e6e9f0;color:#0b3d91}button.go{background:#e6007
 </section><section>
 <div class="card"><div id="map"></div><p id="sum"></p></div>
 <div class="card" style="margin-top:14px;overflow:auto"><table><thead><tr><th>#</th><th>Point</th><th>Lat</th><th>Lon</th><th>Via</th><th>Leg km</th></tr></thead><tbody id="tb"></tbody></table></div>
-<div class="card" style="margin-top:14px"><small id="src"></small></div>
+<div class="card" style="margin-top:14px"><small id="src"></small><p style="font-size:13px;color:#666;margin:8px 0 0"><b>Disclaimer:</b> This tool is intended for publicly available flight routes only, such as those published on FlightAware. Waypoints are resolved against public, unofficial navigation data, which may be incomplete or out of date. Do not enter sensitive, restricted or classified route information. Not for real-world navigation; use at your own risk.</p></div>
 </section></main>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="route.js"></script>
@@ -47,7 +47,7 @@ $('ex').onclick=()=>{$('orig').value=EX.o;$('dest').value=EX.d;$('route').value=
 async function load(){try{
  ND=window.NAVDATA||await (await fetch('navdata.json')).json();
  $('status').className='iss ok';$('status').textContent=`Nav data ready: ${Object.keys(ND.p).length.toLocaleString()} fixes/navaids, ${Object.keys(ND.a).length.toLocaleString()} airways, ${Object.keys(ND.ap).length.toLocaleString()} airports.`;
- $('src').textContent='App version 7 · Not for real-world navigation.';$('go').disabled=false;
+ $('src').textContent='App version 8 · Not for real-world navigation.';$('go').disabled=false;
  if($('route').value)run();}catch(e){$('status').className='iss err';$('status').textContent='Failed to load nav data: '+e;}}
 function lonFix(pts){let o=0,out=[],prev=null;for(const p of pts){let lo=p[1]+o;if(prev!==null){while(lo-prev>180){o-=360;lo-=360}while(lo-prev<-180){o+=360;lo+=360}}out.push([p[0],lo]);prev=lo;}return out;}
 function run(){
