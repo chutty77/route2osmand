@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Flight Route to OsmAnd" xmlns="http://www.topografix.com/GPX/1/1" xmlns:osmand="https://osmand.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata><name>EGLL-YPPH</name><time>2026-11-02T04:41:18.051Z</time></metadata>
+<wpt lat="51.470700" lon="-0.459900"><name>EGLL</name><desc>London Heathrow Airport</desc><type>airport</type></wpt>
+<wpt lat="51.304000" lon="0.597300"><name>DET</name><type>fix</type></wpt>
+<wpt lat="51.162600" lon="1.359100"><name>DVR</name><desc>via L6</desc><type>fix</type></wpt>
+<wpt lat="51.130800" lon="2.000000"><name>KONAN</name><desc>via L9</desc><type>fix</type></wpt>
+<wpt lat="51.094700" lon="2.651700"><name>KOK</name><type>fix</type></wpt>
+<wpt lat="50.662200" lon="4.914000"><name>REMBA</name><type>fix</type></wpt>
+<wpt lat="50.416700" lon="6.369700"><name>MATUG</name><type>fix</type></wpt>
+<wpt lat="50.290300" lon="7.911200"><name>GUBAX</name><type>fix</type></wpt>
+<wpt lat="49.965800" lon="10.627800"><name>BOREP</name><type>fix</type></wpt>
+<wpt lat="49.702100" lon="12.473900"><name>ENITA</name><type>fix</type></wpt>
+<wpt lat="48.270200" lon="16.926300"><name>TOVKA</name><type>fix</type></wpt>
+<wpt lat="47.808300" lon="18.733100"><name>ERGOM</name><type>fix</type></wpt>
+<wpt lat="46.687500" lon="21.496700"><name>BUDOP</name><type>fix</type></wpt>
+<wpt lat="43.700000" lon="28.808300"><name>DINRO</name><type>fix</type></wpt>
+<wpt lat="42.738900" lon="30.596100"><name>UDROS</name><type>fix</type></wpt>
+<wpt lat="42.587500" lon="32.017500"><name>BAMUP</name><desc>via UM859</desc><type>fix</type></wpt>
+<wpt lat="42.584200" lon="32.048300"><name>ABKEV</name><desc>via UM859</desc><type>fix</type></wpt>
+<wpt lat="42.456100" lon="33.131900"><name>BIMVO</name><desc>via UM859</desc><type>fix</type></wpt>
+<wpt lat="42.420600" lon="33.417200"><name>VEPUM</name><desc>via UM859</desc><type>fix</type></wpt>
+<wpt lat="42.359700" lon="33.892500"><name>RERVA</name><desc>via UM859</desc><type>fix</type></wpt>
+<wpt lat="42.293600" lon="34.393300"><name>RUVOM</name><desc>via UM859</desc><type>fix</type></wpt>
+<wpt lat="42.238300" lon="34.798600"><name>OSDIP</name><desc>via UM859</desc><type>fix</type></wpt>
+<wpt lat="42.151400" lon="35.413100"><name>EVKAM</name><desc>via UM859</desc><type>fix</type></wpt>
+<wpt lat="41.903900" lon="37.045300"><name>KARDE</name><desc>via UM859</desc><type>fix</type></wpt>
+<wpt lat="41.708600" lon="37.661900"><name>OLUPO</name><desc>via UL851</desc><type>fix</type></wpt>
+<wpt lat="41.340000" lon="38.790000"><name>TOLUN</name><desc>via UL851</desc><type>fix</type></wpt>
+<wpt lat="41.215300" lon="39.169800"><name>ERIDU</name><desc>via UL851</desc><type>fix</type></wpt>
+<wpt lat="40.995300" lon="39.795600"><name>TBN</name><desc>via UL851</desc><type>fix</type></wpt>
+<wpt lat="40.985300" lon="40.204400"><name>EKTES</name><desc>via UM11</desc><type>fix</type></wpt>
+<wpt lat="40.965000" lon="40.890300"><name>DELEL</name><desc>via UM11</desc><type>fix</type></wpt>
+<wpt lat="40.840000" lon="43.685000"><name>REBLO</name><desc>via UM11</desc><type>fix</type></wpt>
+<wpt lat="40.631100" lon="45.370600"><name>ELSIV</name><desc>via P130</desc><type>fix</type></wpt>
+<wpt lat="40.520300" lon="46.190000"><name>DOLUM</name><desc>via P130</desc><type>fix</type></wpt>
+<wpt lat="40.130800" lon="48.768600"><name>NATSO</name><desc>via P130</desc><type>fix</type></wpt>
+<wpt lat="39.650000" lon="51.498900"><name>BODKA</name><desc>via P130</desc><type>fix</type></wpt>
+<wpt lat="39.182200" lon="54.556200"><name>DOGAM</name><desc>via P130</desc><type>fix</type></wpt>
+<wpt lat="39.012500" lon="55.542900"><name>ARBAT</name><desc>via P130</desc><type>fix</type></wpt>
+<wpt lat="38.617500" lon="57.664100"><name>MAMED</name><desc>via P130</desc><type>fix</type></wpt>
+<wpt lat="38.400000" lon="58.282400"><name>DOLOS</name><desc>via B449</desc><type>fix</type></wpt>
+<wpt lat="37.891400" lon="59.349100"><name>KEMOR</name><desc>via B449</desc><type>fix</type></wpt>
+<wpt lat="36.975800" lon="60.842200"><name>ZAMIR</name><desc>via B449</desc><type>fix</type></wpt>
+<wpt lat="36.625000" lon="61.462500"><name>MARAD</name><desc>via B449</desc><type>fix</type></wpt>
+<wpt lat="35.583300" lon="63.199200"><name>RANAH</name><desc>via B449</desc><type>fix</type></wpt>
+<wpt lat="35.300000" lon="63.650000"><name>ENRON</name><desc>via L750</desc><type>fix</type></wpt>
+<wpt lat="34.500000" lon="64.900000"><name>VELDT</name><desc>via L750</desc><type>fix</type></wpt>
+<wpt lat="34.071700" lon="65.550000"><name>KADVI</name><desc>via L750</desc><type>fix</type></wpt>
+<wpt lat="33.461700" lon="66.458300"><name>RIKAD</name><desc>via L750</desc><type>fix</type></wpt>
+<wpt lat="32.775000" lon="67.450000"><name>DUDEG</name><desc>via L750</desc><type>fix</type></wpt>
+<wpt lat="32.502500" lon="67.815300"><name>GODSI</name><desc>via L750</desc><type>fix</type></wpt>
+<wpt lat="31.666700" lon="69.000000"><name>BIROS</name><desc>via L750</desc><type>fix</type></wpt>
+<wpt lat="31.355900" lon="69.459900"><name>ZB</name><desc>via L750</desc><type>fix</type></wpt>
+<wpt lat="30.250000" lon="69.733300"><name>HILAL</name><desc>via G202</desc><type>fix</type></wpt>
+<wpt lat="28.411300" lon="70.303500"><name>RK</name><desc>via G202</desc><type>fix</type></wpt>
+<wpt lat="25.881100" lon="75.440000"><name>NIKOT</name><desc>via P628</desc><type>fix</type></wpt>
+<wpt lat="25.001700" lon="76.719700"><name>IBANI</name><desc>via P628</desc><type>fix</type></wpt>
+<wpt lat="22.378900" lon="77.184200"><name>VEXIR</name><desc>via Q23</desc><type>fix</type></wpt>
+<wpt lat="21.608100" lon="77.382200"><name>DULAR</name><desc>via Q23</desc><type>fix</type></wpt>
+<wpt lat="20.853100" lon="77.558600"><name>PAPVO</name><desc>via Q23</desc><type>fix</type></wpt>
+<wpt lat="19.295300" lon="77.922800"><name>NUSRU</name><desc>via Q23</desc><type>fix</type></wpt>
+<wpt lat="18.977200" lon="77.996900"><name>PEDMA</name><desc>via Q23</desc><type>fix</type></wpt>
+<wpt lat="18.117200" lon="78.198100"><name>SAKEB</name><desc>via Q23</desc><type>fix</type></wpt>
+<wpt lat="18.013900" lon="78.296700"><name>SAMEL</name><desc>via Q23</desc><type>fix</type></wpt>
+<wpt lat="17.471700" lon="78.813600"><name>ANDAV</name><desc>via Q23</desc><type>fix</type></wpt>
+<wpt lat="16.963900" lon="79.297500"><name>EMPUN</name><desc>via Q23</desc><type>fix</type></wpt>
+<wpt lat="16.037800" lon="79.529200"><name>SUREK</name><desc>via Q23</desc><type>fix</type></wpt>
+<wpt lat="14.387200" lon="80.055000"><name>RINTO</name><desc>via Q23</desc><type>fix</type></wpt>
+<wpt lat="13.642400" lon="80.338900"><name>RUPKU</name><desc>via Q23</desc><type>fix</type></wpt>
+<wpt lat="12.987600" lon="80.155000"><name>MMV</name><desc>via Q23</desc><type>fix</type></wpt>
+<wpt lat="11.859800" lon="80.115200"><name>AKMIL</name><desc>via A465</desc><type>fix</type></wpt>
+<wpt lat="10.725000" lon="80.093300"><name>BEBOK</name><desc>via A465</desc><type>fix</type></wpt>
+<wpt lat="10.000000" lon="80.081700"><name>SAGOR</name><desc>via A465</desc><type>fix</type></wpt>
+<wpt lat="9.192800" lon="80.025000"><name>AVDEL</name><desc>via A465</desc><type>fix</type></wpt>
+<wpt lat="8.005300" lon="79.942200"><name>ANSUL</name><desc>via A465</desc><type>fix</type></wpt>
+<wpt lat="5.016667" lon="81.616667"><name>0501N08137E</name><type>coord</type></wpt>
+<wpt lat="-0.133333" lon="84.733333"><name>0008S08444E</name><type>coord</type></wpt>
+<wpt lat="-2.000000" lon="86.000000"><name>ALVES</name><type>fix</type></wpt>
+<wpt lat="-3.483333" lon="87.000000"><name>0329S08700E</name><type>coord</type></wpt>
+<wpt lat="-8.033333" lon="90.116667"><name>0802S09007E</name><type>coord</type></wpt>
+<wpt lat="-9.233333" lon="91.016667"><name>0914S09101E</name><type>coord</type></wpt>
+<wpt lat="-13.200000" lon="94.366667"><name>1312S09422E</name><type>coord</type></wpt>
+<wpt lat="-15.800000" lon="96.933333"><name>1548S09656E</name><type>coord</type></wpt>
+<wpt lat="-19.533333" lon="101.133333"><name>1932S10108E</name><type>coord</type></wpt>
+<wpt lat="-21.966667" lon="103.866667"><name>2158S10352E</name><type>coord</type></wpt>
+<wpt lat="-26.183333" lon="108.433333"><name>2611S10826E</name><type>coord</type></wpt>
+<wpt lat="-28.816667" lon="111.050000"><name>2849S11103E</name><type>coord</type></wpt>
+<wpt lat="-31.476900" lon="113.379000"><name>OPEGA</name><type>fix</type></wpt>
+<wpt lat="-31.870800" lon="115.528400"><name>IPMOR</name><desc>via T12</desc><type>fix</type></wpt>
+<wpt lat="-31.940300" lon="115.967000"><name>YPPH</name><desc>Perth International Airport</desc><type>airport</type></wpt>
+<rte><name>EGLL-YPPH</name>
+<rtept lat="51.470700" lon="-0.459900"><name>EGLL</name></rtept>
+<rtept lat="51.304000" lon="0.597300"><name>DET</name></rtept>
+<rtept lat="51.162600" lon="1.359100"><name>DVR</name></rtept>
+<rtept lat="51.130800" lon="2.000000"><name>KONAN</name></rtept>
+<rtept lat="51.094700" lon="2.651700"><name>KOK</name></rtept>
+<rtept lat="50.662200" lon="4.914000"><name>REMBA</name></rtept>
+<rtept lat="50.416700" lon="6.369700"><name>MATUG</name></rtept>
+<rtept lat="50.290300" lon="7.911200"><name>GUBAX</name></rtept>
+<rtept lat="49.965800" lon="10.627800"><name>BOREP</name></rtept>
+<rtept lat="49.702100" lon="12.473900"><name>ENITA</name></rtept>
+<rtept lat="48.270200" lon="16.926300"><name>TOVKA</name></rtept>
+<rtept lat="47.808300" lon="18.733100"><name>ERGOM</name></rtept>
+<rtept lat="46.687500" lon="21.496700"><name>BUDOP</name></rtept>
+<rtept lat="43.700000" lon="28.808300"><name>DINRO</name></rtept>
+<rtept lat="42.738900" lon="30.596100"><name>UDROS</name></rtept>
+<rtept lat="42.587500" lon="32.017500"><name>BAMUP</name></rtept>
+<rtept lat="42.584200" lon="32.048300"><name>ABKEV</name></rtept>
+<rtept lat="42.456100" lon="33.131900"><name>BIMVO</name></rtept>
+<rtept lat="42.420600" lon="33.417200"><name>VEPUM</name></rtept>
+<rtept lat="42.359700" lon="33.892500"><name>RERVA</name></rtept>
+<rtept lat="42.293600" lon="34.393300"><name>RUVOM</name></rtept>
+<rtept lat="42.238300" lon="34.798600"><name>OSDIP</name></rtept>
+<rtept lat="42.151400" lon="35.413100"><name>EVKAM</name></rtept>
+<rtept lat="41.903900" lon="37.045300"><name>KARDE</name></rtept>
+<rtept lat="41.708600" lon="37.661900"><name>OLUPO</name></rtept>
+<rtept lat="41.340000" lon="38.790000"><name>TOLUN</name></rtept>
+<rtept lat="41.215300" lon="39.169800"><name>ERIDU</name></rtept>
+<rtept lat="40.995300" lon="39.795600"><name>TBN</name></rtept>
+<rtept lat="40.985300" lon="40.204400"><name>EKTES</name></rtept>
+<rtept lat="40.965000" lon="40.890300"><name>DELEL</name></rtept>
+<rtept lat="40.840000" lon="43.685000"><name>REBLO</name></rtept>
+<rtept lat="40.631100" lon="45.370600"><name>ELSIV</name></rtept>
+<rtept lat="40.520300" lon="46.190000"><name>DOLUM</name></rtept>
+<rtept lat="40.130800" lon="48.768600"><name>NATSO</name></rtept>
+<rtept lat="39.650000" lon="51.498900"><name>BODKA</name></rtept>
+<rtept lat="39.182200" lon="54.556200"><name>DOGAM</name></rtept>
+<rtept lat="39.012500" lon="55.542900"><name>ARBAT</name></rtept>
+<rtept lat="38.617500" lon="57.664100"><name>MAMED</name></rtept>
+<rtept lat="38.400000" lon="58.282400"><name>DOLOS</name></rtept>
+<rtept lat="37.891400" lon="59.349100"><name>KEMOR</name></rtept>
+<rtept lat="36.975800" lon="60.842200"><name>ZAMIR</name></rtept>
+<rtept lat="36.625000" lon="61.462500"><name>MARAD</name></rtept>
+<rtept lat="35.583300" lon="63.199200"><name>RANAH</name></rtept>
+<rtept lat="35.300000" lon="63.650000"><name>ENRON</name></rtept>
+<rtept lat="34.500000" lon="64.900000"><name>VELDT</name></rtept>
+<rtept lat="34.071700" lon="65.550000"><name>KADVI</name></rtept>
+<rtept lat="33.461700" lon="66.458300"><name>RIKAD</name></rtept>
+<rtept lat="32.775000" lon="67.450000"><name>DUDEG</name></rtept>
+<rtept lat="32.502500" lon="67.815300"><name>GODSI</name></rtept>
+<rtept lat="31.666700" lon="69.000000"><name>BIROS</name></rtept>
+<rtept lat="31.355900" lon="69.459900"><name>ZB</name></rtept>
+<rtept lat="30.250000" lon="69.733300"><name>HILAL</name></rtept>
+<rtept lat="28.411300" lon="70.303500"><name>RK</name></rtept>
+<rtept lat="25.881100" lon="75.440000"><name>NIKOT</name></rtept>
+<rtept lat="25.001700" lon="76.719700"><name>IBANI</name></rtept>
+<rtept lat="22.378900" lon="77.184200"><name>VEXIR</name></rtept>
+<rtept lat="21.608100" lon="77.382200"><name>DULAR</name></rtept>
+<rtept lat="20.853100" lon="77.558600"><name>PAPVO</name></rtept>
+<rtept lat="19.295300" lon="77.922800"><name>NUSRU</name></rtept>
+<rtept lat="18.977200" lon="77.996900"><name>PEDMA</name></rtept>
+<rtept lat="18.117200" lon="78.198100"><name>SAKEB</name></rtept>
+<rtept lat="18.013900" lon="78.296700"><name>SAMEL</name></rtept>
+<rtept lat="17.471700" lon="78.813600"><name>ANDAV</name></rtept>
+<rtept lat="16.963900" lon="79.297500"><name>EMPUN</name></rtept>
+<rtept lat="16.037800" lon="79.529200"><name>SUREK</name></rtept>
+<rtept lat="14.387200" lon="80.055000"><name>RINTO</name></rtept>
+<rtept lat="13.642400" lon="80.338900"><name>RUPKU</name></rtept>
+<rtept lat="12.987600" lon="80.155000"><name>MMV</name></rtept>
+<rtept lat="11.859800" lon="80.115200"><name>AKMIL</name></rtept>
+<rtept lat="10.725000" lon="80.093300"><name>BEBOK</name></rtept>
+<rtept lat="10.000000" lon="80.081700"><name>SAGOR</name></rtept>
+<rtept lat="9.192800" lon="80.025000"><name>AVDEL</name></rtept>
+<rtept lat="8.005300" lon="79.942200"><name>ANSUL</name></rtept>
+<rtept lat="5.016667" lon="81.616667"><name>0501N08137E</name></rtept>
+<rtept lat="-0.133333" lon="84.733333"><name>0008S08444E</name></rtept>
+<rtept lat="-2.000000" lon="86.000000"><name>ALVES</name></rtept>
+<rtept lat="-3.483333" lon="87.000000"><name>0329S08700E</name></rtept>
+<rtept lat="-8.033333" lon="90.116667"><name>0802S09007E</name></rtept>
+<rtept lat="-9.233333" lon="91.016667"><name>0914S09101E</name></rtept>
+<rtept lat="-13.200000" lon="94.366667"><name>1312S09422E</name></rtept>
+<rtept lat="-15.800000" lon="96.933333"><name>1548S09656E</name></rtept>
+<rtept lat="-19.533333" lon="101.133333"><name>1932S10108E</name></rtept>
+<rtept lat="-21.966667" lon="103.866667"><name>2158S10352E</name></rtept>
+<rtept lat="-26.183333" lon="108.433333"><name>2611S10826E</name></rtept>
+<rtept lat="-28.816667" lon="111.050000"><name>2849S11103E</name></rtept>
+<rtept lat="-31.476900" lon="113.379000"><name>OPEGA</name></rtept>
+<rtept lat="-31.870800" lon="115.528400"><name>IPMOR</name></rtept>
+<rtept lat="-31.940300" lon="115.967000"><name>YPPH</name></rtept>
+</rte>
+<trk><name>EGLL-YPPH</name><extensions><osmand:color>#e6007e</osmand:color><osmand:width>bold</osmand:width></extensions><trkseg>
+<trkpt lat="51.470700" lon="-0.459900"/>
+<trkpt lat="51.304000" lon="0.597300"/>
+<trkpt lat="51.162600" lon="1.359100"/>
+<trkpt lat="51.130800" lon="2.000000"/>
+<trkpt lat="51.094700" lon="2.651700"/>
+<trkpt lat="50.839137" lon="4.020869"/>
+<trkpt lat="50.662200" lon="4.914000"/>
+<trkpt lat="50.432050" lon="6.282159"/>
+<trkpt lat="50.416700" lon="6.369700"/>
+<trkpt lat="50.302924" lon="7.768067"/>
+<trkpt lat="50.290300" lon="7.911200"/>
+<trkpt lat="50.133475" lon="9.294988"/>
+<trkpt lat="49.965800" lon="10.627800"/>
+<trkpt lat="49.774178" lon="11.991104"/>
+<trkpt lat="49.702100" lon="12.473900"/>
+<trkpt lat="49.323527" lon="13.730333"/>
+<trkpt lat="48.931546" lon="14.967259"/>
+<trkpt lat="48.526546" lon="16.184597"/>
+<trkpt lat="48.270200" lon="16.926300"/>
+<trkpt lat="47.952007" lon="18.186114"/>
+<trkpt lat="47.808300" lon="18.733100"/>
+<trkpt lat="47.355081" lon="19.884680"/>
+<trkpt lat="46.890526" lon="21.016406"/>
+<trkpt lat="46.687500" lon="21.496700"/>
+<trkpt lat="46.266788" lon="22.650939"/>
+<trkpt lat="45.834640" lon="23.787360"/>
+<trkpt lat="45.391401" lon="24.906045"/>
+<trkpt lat="44.937414" lon="26.007111"/>
+<trkpt lat="44.473014" lon="27.090707"/>
+<trkpt lat="43.998533" lon="28.157011"/>
+<trkpt lat="43.700000" lon="28.808300"/>
+<trkpt lat="43.169533" lon="29.808393"/>
+<trkpt lat="42.738900" lon="30.596100"/>
+<trkpt lat="42.611088" lon="31.806910"/>
+<trkpt lat="42.587500" lon="32.017500"/>
+<trkpt lat="42.584200" lon="32.048300"/>
+<trkpt lat="42.456100" lon="33.131900"/>
+<trkpt lat="42.420600" lon="33.417200"/>
+<trkpt lat="42.359700" lon="33.892500"/>
+<trkpt lat="42.293600" lon="34.393300"/>
+<trkpt lat="42.238300" lon="34.798600"/>
+<trkpt lat="42.151400" lon="35.413100"/>
+<trkpt lat="41.973817" lon="36.600607"/>
+<trkpt lat="41.903900" lon="37.045300"/>
+<trkpt lat="41.708600" lon="37.661900"/>
+<trkpt lat="41.349001" lon="38.762998"/>
+<trkpt lat="41.340000" lon="38.790000"/>
+<trkpt lat="41.215300" lon="39.169800"/>
+<trkpt lat="40.995300" lon="39.795600"/>
+<trkpt lat="40.985300" lon="40.204400"/>
+<trkpt lat="40.965000" lon="40.890300"/>
+<trkpt lat="40.920117" lon="42.079400"/>
+<trkpt lat="40.863039" lon="43.266667"/>
+<trkpt lat="40.840000" lon="43.685000"/>
+<trkpt lat="40.697433" lon="44.857448"/>
+<trkpt lat="40.631100" lon="45.370600"/>
+<trkpt lat="40.520300" lon="46.190000"/>
+<trkpt lat="40.352593" lon="47.350849"/>
+<trkpt lat="40.173339" lon="48.505741"/>
+<trkpt lat="40.130800" lon="48.768600"/>
+<trkpt lat="39.937414" lon="49.915698"/>
+<trkpt lat="39.732789" lon="51.056145"/>
+<trkpt lat="39.650000" lon="51.498900"/>
+<trkpt lat="39.484643" lon="52.645639"/>
+<trkpt lat="39.308077" lon="53.786755"/>
+<trkpt lat="39.182200" lon="54.556200"/>
+<trkpt lat="39.012500" lon="55.542900"/>
+<trkpt lat="38.808229" lon="56.668447"/>
+<trkpt lat="38.617500" lon="57.664100"/>
+<trkpt lat="38.400000" lon="58.282400"/>
+<trkpt lat="37.934124" lon="59.260830"/>
+<trkpt lat="37.891400" lon="59.349100"/>
+<trkpt lat="37.343955" lon="60.249881"/>
+<trkpt lat="36.975800" lon="60.842200"/>
+<trkpt lat="36.625000" lon="61.462500"/>
+<trkpt lat="36.092041" lon="62.362006"/>
+<trkpt lat="35.583300" lon="63.199200"/>
+<trkpt lat="35.300000" lon="63.650000"/>
+<trkpt lat="34.748089" lon="64.517078"/>
+<trkpt lat="34.500000" lon="64.900000"/>
+<trkpt lat="34.071700" lon="65.550000"/>
+<trkpt lat="33.506771" lon="66.391963"/>
+<trkpt lat="33.461700" lon="66.458300"/>
+<trkpt lat="32.889197" lon="67.286930"/>
+<trkpt lat="32.775000" lon="67.450000"/>
+<trkpt lat="32.502500" lon="67.815300"/>
+<trkpt lat="31.928208" lon="68.633315"/>
+<trkpt lat="31.666700" lon="69.000000"/>
+<trkpt lat="31.355900" lon="69.459900"/>
+<trkpt lat="30.476239" lon="69.677889"/>
+<trkpt lat="30.250000" lon="69.733300"/>
+<trkpt lat="29.382145" lon="70.005090"/>
+<trkpt lat="28.513748" lon="70.272281"/>
+<trkpt lat="28.411300" lon="70.303500"/>
+<trkpt lat="27.989229" lon="71.204587"/>
+<trkpt lat="27.561332" lon="72.098598"/>
+<trkpt lat="27.127757" lon="72.985621"/>
+<trkpt lat="26.688652" lon="73.865749"/>
+<trkpt lat="26.244164" lon="74.739081"/>
+<trkpt lat="25.881100" lon="75.440000"/>
+<trkpt lat="25.337785" lon="76.234728"/>
+<trkpt lat="25.001700" lon="76.719700"/>
+<trkpt lat="24.114131" lon="76.879025"/>
+<trkpt lat="23.226400" lon="77.036155"/>
+<trkpt lat="22.378900" lon="77.184200"/>
+<trkpt lat="21.608100" lon="77.382200"/>
+<trkpt lat="20.853100" lon="77.558600"/>
+<trkpt lat="19.974798" lon="77.764849"/>
+<trkpt lat="19.295300" lon="77.922800"/>
+<trkpt lat="18.977200" lon="77.996900"/>
+<trkpt lat="18.117200" lon="78.198100"/>
+<trkpt lat="18.013900" lon="78.296700"/>
+<trkpt lat="17.471700" lon="78.813600"/>
+<trkpt lat="16.963900" lon="79.297500"/>
+<trkpt lat="16.089395" lon="79.516351"/>
+<trkpt lat="16.037800" lon="79.529200"/>
+<trkpt lat="15.178324" lon="79.804062"/>
+<trkpt lat="14.387200" lon="80.055000"/>
+<trkpt lat="13.642400" lon="80.338900"/>
+<trkpt lat="12.987600" lon="80.155000"/>
+<trkpt lat="12.088814" lon="80.123254"/>
+<trkpt lat="11.859800" lon="80.115200"/>
+<trkpt lat="10.960641" lon="80.097833"/>
+<trkpt lat="10.725000" lon="80.093300"/>
+<trkpt lat="10.000000" lon="80.081700"/>
+<trkpt lat="9.192800" lon="80.025000"/>
+<trkpt lat="8.295611" lon="79.962395"/>
+<trkpt lat="8.005300" lon="79.942200"/>
+<trkpt lat="7.220055" lon="80.384471"/>
+<trkpt lat="6.434386" lon="80.825209"/>
+<trkpt lat="5.648341" lon="81.264585"/>
+<trkpt lat="5.016667" lon="81.616667"/>
+<trkpt lat="4.247585" lon="82.084341"/>
+<trkpt lat="3.478221" lon="82.551084"/>
+<trkpt lat="2.708628" lon="83.017066"/>
+<trkpt lat="1.938856" lon="83.482456"/>
+<trkpt lat="1.168956" lon="83.947422"/>
+<trkpt lat="0.398979" lon="84.412133"/>
+<trkpt lat="-0.133333" lon="84.733333"/>
+<trkpt lat="-0.877609" lon="85.238164"/>
+<trkpt lat="-1.621816" lon="85.743196"/>
+<trkpt lat="-2.000000" lon="86.000000"/>
+<trkpt lat="-2.746069" lon="86.502588"/>
+<trkpt lat="-3.483333" lon="87.000000"/>
+<trkpt lat="-4.227594" lon="87.505979"/>
+<trkpt lat="-4.971525" lon="88.012930"/>
+<trkpt lat="-5.715068" lon="88.521027"/>
+<trkpt lat="-6.458164" lon="89.030446"/>
+<trkpt lat="-7.200752" lon="89.541362"/>
+<trkpt lat="-7.942772" lon="90.053954"/>
+<trkpt lat="-8.033333" lon="90.116667"/>
+<trkpt lat="-8.755983" lon="90.657776"/>
+<trkpt lat="-9.233333" lon="91.016667"/>
+<trkpt lat="-9.928531" lon="91.595247"/>
+<trkpt lat="-10.622732" lon="92.176289"/>
+<trkpt lat="-11.315861" lon="92.759975"/>
+<trkpt lat="-12.007840" lon="93.346492"/>
+<trkpt lat="-12.698591" lon="93.936028"/>
+<trkpt lat="-13.200000" lon="94.366667"/>
+<trkpt lat="-13.852744" lon="95.002950"/>
+<trkpt lat="-14.503835" lon="95.642813"/>
+<trkpt lat="-15.153184" lon="96.286445"/>
+<trkpt lat="-15.800000" lon="96.933333"/>
+<trkpt lat="-16.419483" lon="97.611919"/>
+<trkpt lat="-17.036772" lon="98.294834"/>
+<trkpt lat="-17.651767" lon="98.982265"/>
+<trkpt lat="-18.264362" lon="99.674399"/>
+<trkpt lat="-18.874451" lon="100.371426"/>
+<trkpt lat="-19.481926" lon="101.073534"/>
+<trkpt lat="-19.533333" lon="101.133333"/>
+<trkpt lat="-20.157510" lon="101.821658"/>
+<trkpt lat="-20.778991" lon="102.515498"/>
+<trkpt lat="-21.397661" lon="103.215060"/>
+<trkpt lat="-21.966667" lon="103.866667"/>
+<trkpt lat="-22.614744" lon="104.540547"/>
+<trkpt lat="-23.259982" lon="105.220793"/>
+<trkpt lat="-23.902261" lon="105.907642"/>
+<trkpt lat="-24.541460" lon="106.601333"/>
+<trkpt lat="-25.177453" lon="107.302110"/>
+<trkpt lat="-25.810112" lon="108.010219"/>
+<trkpt lat="-26.183333" lon="108.433333"/>
+<trkpt lat="-26.862654" lon="109.091981"/>
+<trkpt lat="-27.538886" lon="109.758570"/>
+<trkpt lat="-28.211899" lon="110.433395"/>
+<trkpt lat="-28.816667" lon="111.050000"/>
+<trkpt lat="-29.537732" lon="111.665551"/>
+<trkpt lat="-30.255920" lon="112.289928"/>
+<trkpt lat="-30.971103" lon="112.923483"/>
+<trkpt lat="-31.476900" lon="113.379000"/>
+<trkpt lat="-31.670716" lon="114.409782"/>
+<trkpt lat="-31.856211" lon="115.444781"/>
+<trkpt lat="-31.870800" lon="115.528400"/>
+<trkpt lat="-31.940300" lon="115.967000"/>
+</trkseg></trk>
+</gpx>
