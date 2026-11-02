@@ -26,7 +26,7 @@ button.alt,.btn.alt{background:#e6e9f0;color:#0b3d91}button.go{background:#e6007
 <label>Route string</label><textarea id="route" autocapitalize="characters" spellcheck="false" placeholder="N0502F330 DET L6 DVR L9 KONAN DCT ..."></textarea>
 <div class="row"><div><label>Curve long legs every (km, 0 = off)</label><input id="step" type="number" value="50" inputmode="numeric"></div></div>
 <div class="row"><button id="go" class="go" disabled>Plot route</button><button id="ex" class="alt">Example</button></div>
-<div class="row"><button id="share" disabled>Share / Save GPX</button><button id="dl" class="alt" disabled>Download</button></div>
+<div class="row"><button id="share" disabled>Share / Save GPX</button><button id="dl" class="alt" disabled>Download</button></div><p class="hint" style="font-size:14px;opacity:.8;margin:6px 0">If OsmAnd isn't in the share sheet, tap <b>Download</b> (or <b>Save to Files</b>), open the Files app, tap the .gpx file, then use Share and pick OsmAnd. You can also import it in OsmAnd under My Places, then Tracks, then Import.</p>
 <small>In OsmAnd: open the .gpx file (Share → OsmAnd, or Files → open). It shows the line plus labelled waypoints.</small>
 <div id="status" class="iss warn">Loading nav data…</div><div id="issues"></div></div>
 </section><section>
@@ -67,7 +67,7 @@ function run(){
 $('go').onclick=run;
 function download(){const b=new Blob([GPX],{type:'application/gpx+xml'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=FNAME;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},2000);}
 $('dl').onclick=download;
-$('share').onclick=async()=>{const f=new File([GPX],FNAME,{type:'application/gpx+xml'});
+$('share').onclick=async()=>{const f=new File([GPX],FNAME,{type:'application/octet-stream'});
  if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:FNAME});}catch(e){if(e.name!=='AbortError')download();}}else download();};
 if('serviceWorker'in navigator&&location.protocol.startsWith('http')&&!window.NAVDATA)navigator.serviceWorker.register('sw.js');
 load().then(()=>{if(location.hash==='#example')$('ex').onclick();});
