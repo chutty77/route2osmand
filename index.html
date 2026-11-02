@@ -30,7 +30,7 @@ button.alt,.btn.alt{background:#e6e9f0;color:#0b3d91}button.go{background:#e6007
 <div id="status" class="iss warn">Loading nav data…</div><div id="issues"></div></div>
 </section><section>
 <div class="card"><div id="map"></div><p id="sum"></p></div>
-<div class="card" style="margin-top:14px;overflow:auto"><table><thead><tr><th>#</th><th>Point</th><th>Lat</th><th>Lon</th><th>Via</th><th>Leg km</th></tr></thead><tbody id="tb"></tbody></table></div>
+<div class="card" style="margin-top:14px;overflow:auto"><table><thead><tr><th>#</th><th>Point</th><th>Lat</th><th>Lon</th><th>Via</th><th>Leg nm</th></tr></thead><tbody id="tb"></tbody></table></div>
 <div class="card" style="margin-top:14px"><small id="src"></small><p style="font-size:13px;color:#666;margin:8px 0 0"><b>Disclaimer:</b> This tool is intended for publicly available flight routes only, such as those published on FlightAware. Waypoints are resolved against public, unofficial navigation data, which may be incomplete or out of date. Do not enter sensitive, restricted or classified route information. Not for real-world navigation; use at your own risk.</p></div>
 </section></main>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -47,7 +47,7 @@ $('ex').onclick=()=>{$('orig').value=EX.o;$('dest').value=EX.d;$('route').value=
 async function load(){try{
  ND=window.NAVDATA||await (await fetch('navdata.json')).json();
  $('status').className='iss ok';$('status').textContent=`Nav data ready: ${Object.keys(ND.p).length.toLocaleString()} fixes/navaids, ${Object.keys(ND.a).length.toLocaleString()} airways, ${Object.keys(ND.ap).length.toLocaleString()} airports.`;
- $('src').textContent='App version 8 · Not for real-world navigation.';$('go').disabled=false;
+ $('src').textContent='App version 9 · Not for real-world navigation.';$('go').disabled=false;
  if($('route').value)run();}catch(e){$('status').className='iss err';$('status').textContent='Failed to load nav data: '+e;}}
 function lonFix(pts){let o=0,out=[],prev=null;for(const p of pts){let lo=p[1]+o;if(prev!==null){while(lo-prev>180){o-=360;lo-=360}while(lo-prev<-180){o+=360;lo+=360}}out.push([p[0],lo]);prev=lo;}return out;}
 function run(){
@@ -55,14 +55,14 @@ function run(){
  const o=$('orig').value,d=$('dest').value,step=2*1.852;
  const res=RouteLib.resolve(ND,$('route').value,o,d);layer.clearLayers();
  const P=res.points;$('issues').innerHTML=res.issues.map(i=>`<div class="iss ${i.warn?'warn':'err'}"><b>${i.token}</b> – ${i.why}</div>`).join('')||(P.length?'<div class="iss ok">All route items resolved ✓</div>':'');
- $('tb').innerHTML=P.map((p,i)=>`<tr><td>${i+1}</td><td><b>${p.name}</b> <small>${p.type}${p.desc?' · '+p.desc:''}</small></td><td>${p.lat.toFixed(4)}</td><td>${p.lon.toFixed(4)}</td><td>${p.via}</td><td>${p.leg?Math.round(p.leg):''}</td></tr>`).join('');
+ $('tb').innerHTML=P.map((p,i)=>`<tr><td>${i+1}</td><td><b>${p.name}</b> <small>${p.type}${p.desc?' · '+p.desc:''}</small></td><td>${p.lat.toFixed(4)}</td><td>${p.lon.toFixed(4)}</td><td>${p.via}</td><td>${p.leg?Math.round(p.leg/1.852):''}</td></tr>`).join('');
  if(!P.length){GPX=null;['dl'].forEach(b=>$(b).disabled=true);return;}
  const line=lonFix(RouteLib.densify(P,step));L.polyline(line,{color:'#e6007e',weight:4}).addTo(layer);
  const lp=lonFix(P.map(p=>[p.lat,p.lon]));P.forEach((p,i)=>L.circleMarker(lp[i],{radius:p.type==='airport'?7:4,color:'#0b3d91',fillOpacity:1}).bindTooltip(p.name,{permanent:P.length<60,direction:'right',className:'tt'}).addTo(layer));
  map.fitBounds(L.latLngBounds(line),{padding:[20,20]});
  const nm=(o&&d)?`${o.toUpperCase()}-${d.toUpperCase()}`:'Flight route';FNAME=nm.replace(/[^\w-]/g,'_')+'.gpx';
  GPX=RouteLib.toGPX(res,nm,step);['dl'].forEach(b=>$(b).disabled=false);
- $('sum').textContent=`${P.length} points · ${Math.round(res.totalKm).toLocaleString()} km (${Math.round(res.totalKm/1.852).toLocaleString()} nm)`;}
+ $('sum').textContent=`${P.length} points · ${Math.round(res.totalKm/1.852).toLocaleString()} nm`;}
 $('go').onclick=run;
 $('clr').onclick=()=>{['orig','dest','route','flt'].forEach(k=>{$(k).value='';localStorage.removeItem('r2o_'+k);});$('flt').oninput();layer.clearLayers();$('tb').innerHTML='';$('issues').innerHTML='';$('sum').textContent='';GPX=null;FNAME='route.gpx';['dl'].forEach(b=>$(b).disabled=true);map.setView([20,60],2);$('route').focus();};
 function download(){const b=new Blob([GPX],{type:'application/gpx+xml'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=FNAME;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},2000);}
