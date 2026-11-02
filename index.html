@@ -1,8 +1,8 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Route2OsmAnd">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Route→GPX">
 <meta name="theme-color" content="#0b3d91"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-180.png">
-<title>Flight Route → OsmAnd</title>
+<title>Flight Route → GPX</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 *{box-sizing:border-box}body{margin:0;font:17px -apple-system,system-ui,sans-serif;background:#f2f4f8;color:#111}
@@ -16,19 +16,17 @@ button.alt,.btn.alt{background:#e6e9f0;color:#0b3d91}button.go{background:#e6007
 #map{height:55vh;min-height:360px;border-radius:12px}table{width:100%;border-collapse:collapse;font-size:15px}td,th{padding:6px;border-bottom:1px solid #eee;text-align:left}
 .iss{padding:8px 10px;border-radius:8px;margin:4px 0}.err{background:#ffe1e1}.warn{background:#fff4d1}.ok{background:#dcf7e3}small{color:#666}
 </style></head><body>
-<header><h1>✈︎ Flight Route → OsmAnd GPX</h1></header>
+<header><h1>✈︎ Flight Route → GPX</h1></header>
 <main><section>
 <div class="card"><label>1 · Find the route on FlightAware</label>
 <div class="row"><input id="flt" placeholder="Flight no. e.g. QFAX" autocapitalize="characters"><a id="falink" class="btn alt" target="_blank" href="https://www.flightaware.com/live/">Open FlightAware</a></div>
-<small>Open the flight page, tap “Track log &amp; graph” / flight details, copy the <b>Route</b> text, and paste below. (FlightAware blocks direct lookups from web apps.)</small></div>
+<small>Open the flight page, copy the filed route from “Flight Data”.</small></div>
 <div class="card" style="margin-top:14px"><label>2 · Route</label>
-<div class="row"><div><label>Origin ICAO</label><input id="orig" placeholder="YSSY" autocapitalize="characters"></div><div><label>Destination ICAO</label><input id="dest" placeholder="YMML" autocapitalize="characters"></div></div>
+<div class="row"><div><label>Origin ICAO</label><input id="orig" placeholder="YMML" autocapitalize="characters"></div><div><label>Destination ICAO</label><input id="dest" placeholder="YSSY" autocapitalize="characters"></div></div>
 <label>Route string</label><textarea id="route" autocapitalize="characters" spellcheck="false" placeholder="DCT DOSEL Y59 RIVET DCT"></textarea>
-<div class="row"><div><label>Curve long legs every (km, 0 = off)</label><input id="step" type="number" value="50" inputmode="numeric"></div></div>
+<div class="row"><div><label>Great-circle point spacing (nm, 0 = off)</label><input id="step" type="number" value="5" step="any" inputmode="decimal"></div></div>
 <div class="row"><button id="go" class="go" disabled>Plot route</button><button id="ex" class="alt">Example</button><button id="clr" class="alt">Clear</button></div>
-<div class="row"><button id="share" disabled>Share GPX → OsmAnd</button><button id="opn" disabled>Open GPX in Safari</button></div>
-<div class="row"><button id="dl" class="alt" disabled>Download</button><button id="osm" class="alt">Launch OsmAnd</button></div><p class="hint" style="font-size:14px;opacity:.8;margin:6px 0">Try in order: <b>1. Share GPX → OsmAnd</b> (look for OsmAnd in the app row, or under “More”). <b>2. Open GPX in Safari</b>: a new tab opens the file; tap Share (or “Open in…”) and pick OsmAnd. <b>3. Download</b>, then in Files tap the .gpx and Share → OsmAnd (or in OsmAnd: My Places → Tracks → Import). <b>Launch OsmAnd</b> just switches to the app, centred on the route. Test: <a href="sample.gpx">open a hosted sample .gpx</a>.</p>
-<small>In OsmAnd: open the .gpx file (Share → OsmAnd, or Files → open). It shows the line plus labelled waypoints.</small>
+<div class="row"><button id="dl" disabled>Download</button></div><p class="hint" style="font-size:14px;opacity:.8;margin:6px 0">Hit download and then open with your preferred GPX compatible app.</p>
 <div id="status" class="iss warn">Loading nav data…</div><div id="issues"></div></div>
 </section><section>
 <div class="card"><div id="map"></div><p id="sum"></p></div>
@@ -39,40 +37,36 @@ button.alt,.btn.alt{background:#e6e9f0;color:#0b3d91}button.go{background:#e6007
 <script src="route.js"></script>
 <script>
 const $=id=>document.getElementById(id);let LASTC=null,ND=null,GPX=null,FNAME='route.gpx';
-const EX={o:'YSSY',d:'YMML',r:'DCT DOSEL Y59 RIVET DCT',f:'QFAX'};
+const EX={o:'YMML',d:'YSSY',r:'DCT DOSEL Y59 RIVET DCT',f:'QFAX'};
 const map=L.map('map',{worldCopyJump:true}).setView([20,60],2);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);
 let layer=L.layerGroup().addTo(map);
-['orig','dest','route','step','flt'].forEach(k=>{const v=localStorage.getItem('r2o_'+k);if(v)$(k).value=v;});
+['orig','dest','route','flt'].forEach(k=>{const v=localStorage.getItem('r2o_'+k);if(v)$(k).value=v;});{const v=localStorage.getItem('r2o_stepnm');if(v!==null&&v!=='')$('step').value=v;}
 $('flt').oninput=()=>{const f=$('flt').value.trim().toUpperCase().replace(/\s/g,'');$('falink').href=f?'https://www.flightaware.com/live/flight/'+encodeURIComponent(f):'https://www.flightaware.com/live/';};$('flt').oninput();
 $('ex').onclick=()=>{$('orig').value=EX.o;$('dest').value=EX.d;$('route').value=EX.r;$('flt').value=EX.f;$('flt').oninput();run();};
 async function load(){try{
  ND=window.NAVDATA||await (await fetch('navdata.json')).json();
  $('status').className='iss ok';$('status').textContent=`Nav data ready: ${Object.keys(ND.p).length.toLocaleString()} fixes/navaids, ${Object.keys(ND.a).length.toLocaleString()} airways, ${Object.keys(ND.ap).length.toLocaleString()} airports.`;
- $('src').textContent='App version 5. Data: '+ND.meta.source+'. Built '+ND.meta.built+'. Not for real-world navigation.';$('go').disabled=false;
+ $('src').textContent='App version 6 · Not for real-world navigation.';$('go').disabled=false;
  if($('route').value)run();}catch(e){$('status').className='iss err';$('status').textContent='Failed to load nav data: '+e;}}
 function lonFix(pts){let o=0,out=[],prev=null;for(const p of pts){let lo=p[1]+o;if(prev!==null){while(lo-prev>180){o-=360;lo-=360}while(lo-prev<-180){o+=360;lo+=360}}out.push([p[0],lo]);prev=lo;}return out;}
 function run(){
- ['orig','dest','route','step','flt'].forEach(k=>localStorage.setItem('r2o_'+k,$(k).value));
- const o=$('orig').value,d=$('dest').value,step=+$('step').value||0;
+ ['orig','dest','route','flt'].forEach(k=>localStorage.setItem('r2o_'+k,$(k).value));localStorage.setItem('r2o_stepnm',$('step').value);
+ const o=$('orig').value,d=$('dest').value,step=(+$('step').value||0)*1.852;
  const res=RouteLib.resolve(ND,$('route').value,o,d);layer.clearLayers();
  const P=res.points;$('issues').innerHTML=res.issues.map(i=>`<div class="iss ${i.warn?'warn':'err'}"><b>${i.token}</b> – ${i.why}</div>`).join('')||(P.length?'<div class="iss ok">All route items resolved ✓</div>':'');
  $('tb').innerHTML=P.map((p,i)=>`<tr><td>${i+1}</td><td><b>${p.name}</b> <small>${p.type}${p.desc?' · '+p.desc:''}</small></td><td>${p.lat.toFixed(4)}</td><td>${p.lon.toFixed(4)}</td><td>${p.via}</td><td>${p.leg?Math.round(p.leg):''}</td></tr>`).join('');
- if(!P.length){GPX=null;['share','dl','opn'].forEach(b=>$(b).disabled=true);return;}
- const line=lonFix(RouteLib.densify(P,step||50));L.polyline(line,{color:'#e6007e',weight:4}).addTo(layer);
+ if(!P.length){GPX=null;['dl'].forEach(b=>$(b).disabled=true);return;}
+ const line=lonFix(RouteLib.densify(P,step));L.polyline(line,{color:'#e6007e',weight:4}).addTo(layer);
  const lp=lonFix(P.map(p=>[p.lat,p.lon]));P.forEach((p,i)=>L.circleMarker(lp[i],{radius:p.type==='airport'?7:4,color:'#0b3d91',fillOpacity:1}).bindTooltip(p.name,{permanent:P.length<60,direction:'right',className:'tt'}).addTo(layer));
  map.fitBounds(L.latLngBounds(line),{padding:[20,20]});
  const nm=(o&&d)?`${o.toUpperCase()}-${d.toUpperCase()}`:'Flight route';FNAME=nm.replace(/[^\w-]/g,'_')+'.gpx';
- GPX=RouteLib.toGPX(res,nm,step);{const c=L.latLngBounds(line).getCenter();LASTC=[c.lat,((c.lng+540)%360)-180];}['share','dl','opn'].forEach(b=>$(b).disabled=false);
+ GPX=RouteLib.toGPX(res,nm,step);['dl'].forEach(b=>$(b).disabled=false);
  $('sum').textContent=`${P.length} points · ${Math.round(res.totalKm).toLocaleString()} km (${Math.round(res.totalKm/1.852).toLocaleString()} nm)`;}
 $('go').onclick=run;
-$('clr').onclick=()=>{['orig','dest','route','flt'].forEach(k=>{$(k).value='';localStorage.removeItem('r2o_'+k);});$('flt').oninput();layer.clearLayers();$('tb').innerHTML='';$('issues').innerHTML='';$('sum').textContent='';GPX=null;FNAME='route.gpx';['share','dl','opn'].forEach(b=>$(b).disabled=true);map.setView([20,60],2);$('route').focus();};
+$('clr').onclick=()=>{['orig','dest','route','flt'].forEach(k=>{$(k).value='';localStorage.removeItem('r2o_'+k);});$('flt').oninput();layer.clearLayers();$('tb').innerHTML='';$('issues').innerHTML='';$('sum').textContent='';GPX=null;FNAME='route.gpx';['dl'].forEach(b=>$(b).disabled=true);map.setView([20,60],2);$('route').focus();};
 function download(){const b=new Blob([GPX],{type:'application/gpx+xml'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=FNAME;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},2000);}
 $('dl').onclick=download;
-$('share').onclick=async()=>{const f=new File([GPX],FNAME,{type:'application/gpx+xml'});
- if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f]});}catch(e){if(e.name!=='AbortError')download();}}else download();};
-$('opn').onclick=()=>{const u=URL.createObjectURL(new Blob([GPX],{type:'application/gpx+xml'}));const w=window.open(u,'_blank');if(!w)location.href=u;setTimeout(()=>URL.revokeObjectURL(u),120000);};
-$('osm').onclick=()=>{let q='';if(LASTC)q='?lat='+LASTC[0].toFixed(4)+'&lon='+LASTC[1].toFixed(4)+'&z=4';location.href='osmandmaps://'+q;};
 if('serviceWorker'in navigator&&location.protocol.startsWith('http')&&!window.NAVDATA){navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{});let rl=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!rl){rl=true;location.reload();}});}
 load().then(()=>{if(location.hash==='#example')$('ex').onclick();});
 </script></body></html>
