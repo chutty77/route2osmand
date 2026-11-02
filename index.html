@@ -25,7 +25,7 @@ button.alt,.btn.alt{background:#e6e9f0;color:#0b3d91}button.go{background:#e6007
 <div class="row"><div><label>Origin ICAO</label><input id="orig" placeholder="EGLL" autocapitalize="characters"></div><div><label>Destination ICAO</label><input id="dest" placeholder="YPPH" autocapitalize="characters"></div></div>
 <label>Route string</label><textarea id="route" autocapitalize="characters" spellcheck="false" placeholder="N0502F330 DET L6 DVR L9 KONAN DCT ..."></textarea>
 <div class="row"><div><label>Curve long legs every (km, 0 = off)</label><input id="step" type="number" value="50" inputmode="numeric"></div></div>
-<div class="row"><button id="go" class="go" disabled>Plot route</button><button id="ex" class="alt">Example</button></div>
+<div class="row"><button id="go" class="go" disabled>Plot route</button><button id="ex" class="alt">Example</button><button id="clr" class="alt">Clear</button></div>
 <div class="row"><button id="share" disabled>Share / Save GPX</button><button id="dl" class="alt" disabled>Download</button></div><p class="hint" style="font-size:14px;opacity:.8;margin:6px 0">If OsmAnd isn't in the share sheet, tap <b>Download</b> (or <b>Save to Files</b>), open the Files app, tap the .gpx file, then use Share and pick OsmAnd. You can also import it in OsmAnd under My Places, then Tracks, then Import.</p>
 <small>In OsmAnd: open the .gpx file (Share → OsmAnd, or Files → open). It shows the line plus labelled waypoints.</small>
 <div id="status" class="iss warn">Loading nav data…</div><div id="issues"></div></div>
@@ -48,7 +48,7 @@ $('ex').onclick=()=>{$('orig').value=EX.o;$('dest').value=EX.d;$('route').value=
 async function load(){try{
  ND=window.NAVDATA||await (await fetch('navdata.json')).json();
  $('status').className='iss ok';$('status').textContent=`Nav data ready: ${Object.keys(ND.p).length.toLocaleString()} fixes/navaids, ${Object.keys(ND.a).length.toLocaleString()} airways, ${Object.keys(ND.ap).length.toLocaleString()} airports.`;
- $('src').textContent='Data: '+ND.meta.source+'. Built '+ND.meta.built+'. Not for real-world navigation.';$('go').disabled=false;
+ $('src').textContent='App version 3. Data: '+ND.meta.source+'. Built '+ND.meta.built+'. Not for real-world navigation.';$('go').disabled=false;
  if($('route').value)run();}catch(e){$('status').className='iss err';$('status').textContent='Failed to load nav data: '+e;}}
 function lonFix(pts){let o=0,out=[],prev=null;for(const p of pts){let lo=p[1]+o;if(prev!==null){while(lo-prev>180){o-=360;lo-=360}while(lo-prev<-180){o+=360;lo+=360}}out.push([p[0],lo]);prev=lo;}return out;}
 function run(){
@@ -65,10 +65,11 @@ function run(){
  GPX=RouteLib.toGPX(res,nm,step);['share','dl'].forEach(b=>$(b).disabled=false);
  $('sum').textContent=`${P.length} points · ${Math.round(res.totalKm).toLocaleString()} km (${Math.round(res.totalKm/1.852).toLocaleString()} nm)`;}
 $('go').onclick=run;
+$('clr').onclick=()=>{['orig','dest','route','flt'].forEach(k=>{$(k).value='';localStorage.removeItem('r2o_'+k);});$('flt').oninput();layer.clearLayers();$('tb').innerHTML='';$('issues').innerHTML='';$('sum').textContent='';GPX=null;FNAME='route.gpx';['share','dl'].forEach(b=>$(b).disabled=true);map.setView([20,60],2);$('route').focus();};
 function download(){const b=new Blob([GPX],{type:'application/gpx+xml'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=FNAME;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},2000);}
 $('dl').onclick=download;
 $('share').onclick=async()=>{const f=new File([GPX],FNAME,{type:'application/octet-stream'});
  if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],title:FNAME});}catch(e){if(e.name!=='AbortError')download();}}else download();};
-if('serviceWorker'in navigator&&location.protocol.startsWith('http')&&!window.NAVDATA)navigator.serviceWorker.register('sw.js');
+if('serviceWorker'in navigator&&location.protocol.startsWith('http')&&!window.NAVDATA){navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{});let rl=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!rl){rl=true;location.reload();}});}
 load().then(()=>{if(location.hash==='#example')$('ex').onclick();});
 </script></body></html>
