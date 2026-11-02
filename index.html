@@ -19,12 +19,12 @@ button.alt,.btn.alt{background:#e6e9f0;color:#0b3d91}button.go{background:#e6007
 <header><h1>✈︎ Flight Route → GPX</h1></header>
 <main><section>
 <div class="card"><label>1 · Find the route on FlightAware</label>
-<div class="row"><input id="flt" placeholder="Flight no. e.g. QFAX" autocapitalize="characters"><a id="falink" class="btn alt" target="_blank" href="https://www.flightaware.com/live/">Open FlightAware</a></div>
+<div class="row"><input id="flt" placeholder="Flight no. e.g. QFA444" autocapitalize="characters"><a id="falink" class="btn alt" target="_blank" href="https://www.flightaware.com/live/">Open FlightAware</a></div>
 <small>Open the flight page, copy the filed route from “Flight Data”.</small></div>
 <div class="card" style="margin-top:14px"><label>2 · Route</label>
 <div class="row"><div><label>Origin ICAO</label><input id="orig" placeholder="YMML" autocapitalize="characters"></div><div><label>Destination ICAO</label><input id="dest" placeholder="YSSY" autocapitalize="characters"></div></div>
 <label>Route string</label><textarea id="route" autocapitalize="characters" spellcheck="false" placeholder="DCT DOSEL Y59 RIVET DCT"></textarea>
-<div class="row"><div><label>Great-circle point spacing (nm, 0 = off)</label><input id="step" type="number" value="5" step="any" inputmode="decimal"></div></div>
+
 <div class="row"><button id="go" class="go" disabled>Plot route</button><button id="ex" class="alt">Example</button><button id="clr" class="alt">Clear</button></div>
 <div class="row"><button id="dl" disabled>Download</button></div><p class="hint" style="font-size:14px;opacity:.8;margin:6px 0">Hit download and then open with your preferred GPX compatible app.</p>
 <div id="status" class="iss warn">Loading nav data…</div><div id="issues"></div></div>
@@ -37,22 +37,22 @@ button.alt,.btn.alt{background:#e6e9f0;color:#0b3d91}button.go{background:#e6007
 <script src="route.js"></script>
 <script>
 const $=id=>document.getElementById(id);let LASTC=null,ND=null,GPX=null,FNAME='route.gpx';
-const EX={o:'YMML',d:'YSSY',r:'DCT DOSEL Y59 RIVET DCT',f:'QFAX'};
+const EX={o:'YMML',d:'YSSY',r:'DCT DOSEL Y59 RIVET DCT',f:'QFA444'};
 const map=L.map('map',{worldCopyJump:true}).setView([20,60],2);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(map);
 let layer=L.layerGroup().addTo(map);
-['orig','dest','route','flt'].forEach(k=>{const v=localStorage.getItem('r2o_'+k);if(v)$(k).value=v;});{const v=localStorage.getItem('r2o_stepnm');if(v!==null&&v!=='')$('step').value=v;}
+['orig','dest','route','flt'].forEach(k=>{const v=localStorage.getItem('r2o_'+k);if(v)$(k).value=v;});
 $('flt').oninput=()=>{const f=$('flt').value.trim().toUpperCase().replace(/\s/g,'');$('falink').href=f?'https://www.flightaware.com/live/flight/'+encodeURIComponent(f):'https://www.flightaware.com/live/';};$('flt').oninput();
 $('ex').onclick=()=>{$('orig').value=EX.o;$('dest').value=EX.d;$('route').value=EX.r;$('flt').value=EX.f;$('flt').oninput();run();};
 async function load(){try{
  ND=window.NAVDATA||await (await fetch('navdata.json')).json();
  $('status').className='iss ok';$('status').textContent=`Nav data ready: ${Object.keys(ND.p).length.toLocaleString()} fixes/navaids, ${Object.keys(ND.a).length.toLocaleString()} airways, ${Object.keys(ND.ap).length.toLocaleString()} airports.`;
- $('src').textContent='App version 6 · Not for real-world navigation.';$('go').disabled=false;
+ $('src').textContent='App version 7 · Not for real-world navigation.';$('go').disabled=false;
  if($('route').value)run();}catch(e){$('status').className='iss err';$('status').textContent='Failed to load nav data: '+e;}}
 function lonFix(pts){let o=0,out=[],prev=null;for(const p of pts){let lo=p[1]+o;if(prev!==null){while(lo-prev>180){o-=360;lo-=360}while(lo-prev<-180){o+=360;lo+=360}}out.push([p[0],lo]);prev=lo;}return out;}
 function run(){
- ['orig','dest','route','flt'].forEach(k=>localStorage.setItem('r2o_'+k,$(k).value));localStorage.setItem('r2o_stepnm',$('step').value);
- const o=$('orig').value,d=$('dest').value,step=(+$('step').value||0)*1.852;
+ ['orig','dest','route','flt'].forEach(k=>localStorage.setItem('r2o_'+k,$(k).value));
+ const o=$('orig').value,d=$('dest').value,step=2*1.852;
  const res=RouteLib.resolve(ND,$('route').value,o,d);layer.clearLayers();
  const P=res.points;$('issues').innerHTML=res.issues.map(i=>`<div class="iss ${i.warn?'warn':'err'}"><b>${i.token}</b> – ${i.why}</div>`).join('')||(P.length?'<div class="iss ok">All route items resolved ✓</div>':'');
  $('tb').innerHTML=P.map((p,i)=>`<tr><td>${i+1}</td><td><b>${p.name}</b> <small>${p.type}${p.desc?' · '+p.desc:''}</small></td><td>${p.lat.toFixed(4)}</td><td>${p.lon.toFixed(4)}</td><td>${p.via}</td><td>${p.leg?Math.round(p.leg):''}</td></tr>`).join('');
