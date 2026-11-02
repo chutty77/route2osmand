@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 *{box-sizing:border-box}body{margin:0;font:17px -apple-system,system-ui,sans-serif;background:#f2f4f8;color:#111}
-header{background:#0b3d91;color:#fff;padding:14px 18px;padding-top:max(14px,env(safe-area-inset-top))}h1{margin:0;font-size:22px}
+header{background:#0b3d91;color:#fff;padding:14px 18px;padding-top:calc(env(safe-area-inset-top,0px) + 34px);padding-left:max(18px,env(safe-area-inset-left));padding-right:max(18px,env(safe-area-inset-right))}h1{margin:0;font-size:22px}
 main{display:grid;grid-template-columns:minmax(340px,1fr) 1.4fr;gap:14px;padding:14px}@media(max-width:900px){main{grid-template-columns:1fr}}
 .card{background:#fff;border-radius:14px;padding:14px;box-shadow:0 1px 4px #0002}
 label{font-weight:600;display:block;margin:10px 0 4px}input,textarea{width:100%;font-size:18px;padding:12px;border:1px solid #bbb;border-radius:10px}
@@ -48,7 +48,7 @@ $('ex').onclick=()=>{$('orig').value=EX.o;$('dest').value=EX.d;$('route').value=
 async function load(){try{
  ND=window.NAVDATA||await (await fetch('navdata.json')).json();
  $('status').className='iss ok';$('status').textContent=`Nav data ready: ${Object.keys(ND.p).length.toLocaleString()} fixes/navaids, ${Object.keys(ND.a).length.toLocaleString()} airways, ${Object.keys(ND.ap).length.toLocaleString()} airports.`;
- $('src').textContent='App version 2.1.1 · Not for real-world navigation.';$('go').disabled=false;
+ $('src').textContent='App version 2.1.2 · Not for real-world navigation.';$('go').disabled=false;
  if($('route').value)run();}catch(e){$('status').className='iss err';$('status').textContent='Failed to load nav data: '+e;}}
 function lonFix(pts){let o=0,out=[],prev=null;for(const p of pts){let lo=p[1]+o;if(prev!==null){while(lo-prev>180){o-=360;lo-=360}while(lo-prev<-180){o+=360;lo+=360}}out.push([p[0],lo]);prev=lo;}return out;}
 function run(){
