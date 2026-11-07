@@ -8,13 +8,17 @@ function gcInterp(a,b,f){const p1=rad(a[0]),l1=rad(a[1]),p2=rad(b[0]),l2=rad(b[1
  return [deg(Math.atan2(z,Math.hypot(x,y))),deg(Math.atan2(y,x))];}
 const SPD=/^[NKM]\d{3,4}([FAMS]\d{3,4}|VFR)?$/;
 const COORD=/^(\d{2})(\d{2})?(\d{2})?([NS])(\d{3})(\d{2})?(\d{2})?([EW])$/,COORD2=/^([NS])(\d{2})(\d{2})?([EW])(\d{3})(\d{2})?$/;
-function parseCoord(t){let m=COORD.exec(t);if(!m){const k=COORD2.exec(t);if(!k)return null;m=[t,k[2],k[3],undefined,k[1],k[5],k[6],undefined,k[4]];}
+// Lat/lon written with a slash (0440N/08238E, N4620/W07805). The slash is not a speed/level separator.
+const SLASHLL=/^(\d{2}(?:\d{2}){0,2}[NS])\/(\d{3}(?:\d{2}){0,2}[EW])(?:\/.*)?$/;
+const SLASHLL2=/^([NS]\d{2}(?:\d{2}){0,2})\/([EW]\d{3}(?:\d{2}){0,2})(?:\/.*)?$/;
+function joinSlashCoord(t){const m=SLASHLL.exec(t)||SLASHLL2.exec(t);return m?m[1]+m[2]:t;}
+function parseCoord(t){t=joinSlashCoord(String(t).toUpperCase());let m=COORD.exec(t);if(!m){const k=COORD2.exec(t);if(!k)return null;m=[t,k[2],k[3],undefined,k[1],k[5],k[6],undefined,k[4]];}
  if(!!m[3]!==!!m[7])return null;let la=+m[1]+(m[2]?+m[2]/60:0)+(m[3]?+m[3]/3600:0),lo=+m[5]+(m[6]?+m[6]/60:0)+(m[7]?+m[7]/3600:0);m=[m[0],0,0,m[4],0,0,m[8]];if(m[3]==='S')la=-la;if(m[6]==='W')lo=-lo;return (la<=90&&lo<=180)?[la,lo]:null;}
 function nearest(c,ref){if(!c||!c.length)return null;if(!ref||c.length===1)return c[0];let b=c[0],bd=1e9;for(const p of c){const d=dist(p,ref);if(d<bd){bd=d;b=p;}}return b;}
 function tokenize(s){
  const out=[];
  for(let raw of s.toUpperCase().replace(/[()\n\r\t,]/g,' ').split(/\s+/)){
-  if(!raw)continue; let t=raw.split('/')[0];
+  if(!raw)continue; const sl=SLASHLL.exec(raw)||SLASHLL2.exec(raw); let t=sl?sl[1]+sl[2]:raw.split('/')[0];
   if(!t||SPD.test(t)||t==='DCT'||t==='IFR'||t==='VFR'||t==='SID'||t==='STAR')continue;
   out.push(t);
  }return out;}
